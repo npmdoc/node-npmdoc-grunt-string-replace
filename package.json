@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"grunt-string-replace",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "grunt-string-replace",
+    "description": "api documentation for [grunt-string-replace (v1.3.1)](https://github.com/eruizdechavez/grunt-string-replace) [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-string-replace.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-string-replace) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace)",
     "devDependencies": {
-        "grunt-string-replace": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "grunt-string-replace": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-grunt-string-replace",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-grunt-string-replace",
+    "keywords": [
+        "documentation",
+        "grunt-string-replace"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_grunt_string_replace.js",
+    "name": "npmdoc-grunt-string-replace",
+    "nameAlias": "npmdoc_grunt_string_replace",
+    "nameOriginal": "npmdoc-grunt-string-replace",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-grunt-string-replace"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
