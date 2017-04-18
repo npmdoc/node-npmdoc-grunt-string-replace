@@ -1,9 +1,14 @@
-# api documentation for  [grunt-string-replace (v1.3.1)](https://github.com/eruizdechavez/grunt-string-replace)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-string-replace.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-string-replace) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace)
+# npmdoc-grunt-string-replace
+
+#### api documentation for  [grunt-string-replace (v1.3.1)](https://github.com/eruizdechavez/grunt-string-replace)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-string-replace.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-string-replace) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace)
+
 #### Replaces strings on files by using string or regex patterns. Attempts to be a String.prototype.replace adapter task for your grunt project.
 
-[![NPM](https://nodei.co/npm/grunt-string-replace.png?downloads=true)](https://www.npmjs.com/package/grunt-string-replace)
+[![NPM](https://nodei.co/npm/grunt-string-replace.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/grunt-string-replace)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-grunt-string-replace/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-grunt-string-replace_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-grunt-string-replace/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-grunt-string-replace/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-grunt-string-replace/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-grunt-string-replace/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-grunt-string-replace/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-grunt-string-replace/build/screenCapture.npmPackageListing.svg)
 
@@ -18,7 +23,6 @@
 {
     "author": {
         "name": "Erick Ruiz de Chavez",
-        "email": "eruizdechavez@fastmail.com",
         "url": "http://erickruizdechavez.com"
     },
     "bin": {
@@ -66,13 +70,11 @@
     "main": "tasks/string-replace",
     "maintainers": [
         {
-            "name": "eruizdechavez",
-            "email": "erick@eruizdechavez.com"
+            "name": "eruizdechavez"
         }
     ],
     "name": "grunt-string-replace",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git://github.com/eruizdechavez/grunt-string-replace.git"
@@ -85,16 +87,6 @@
     "version": "1.3.1"
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module grunt-string-replace](#apidoc.module.grunt-string-replace)
-
-
-
-# <a name="apidoc.module.grunt-string-replace"></a>[module grunt-string-replace](#apidoc.module.grunt-string-replace)
 
 
 
