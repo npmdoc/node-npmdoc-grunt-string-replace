@@ -70,6 +70,25 @@
 
         </li>
 
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">grunt-string-replace.</span>string_replace</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-string-replace.string_replace">module grunt-string-replace.string_replace</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-string-replace.string_replace.init">
+            function <span class="apidocSignatureSpan">grunt-string-replace.string_replace.</span>init
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
@@ -108,6 +127,163 @@
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-string-replace.string_replace" id="apidoc.module.grunt-string-replace.string_replace">module grunt-string-replace.string_replace</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-string-replace.string_replace.init" id="apidoc.element.grunt-string-replace.string_replace.init">
+        function <span class="apidocSignatureSpan">grunt-string-replace.string_replace.</span>init
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">init = function (grunt) {
+  &#x27;use strict&#x27;;
+
+  var path = require(&#x27;path&#x27;);
+
+  var detectDestType = function(dest) {
+    if (dest[dest.length - 1] === &#x27;/&#x27;) {
+      return &#x27;directory&#x27;;
+    } else {
+      return &#x27;file&#x27;;
+    }
+  };
+
+  var unixifyPath = function(filepath) {
+    var path = &#x27;&#x27;;
+    if (process.platform === &#x27;win32&#x27;) {
+      path = filepath.replace(/\\/g, &#x27;/&#x27;);
+    } else {
+      path = filepath;
+    }
+    return path;
+  };
+
+  exports.replace = function(files, replacements, options, replace_done) {
+    var content, newContent, dest;
+
+    if (!replace_done) {
+      replace_done = options;
+      options = {};
+    }
+
+    if (!options.hasOwnProperty(&#x22;saveUnchanged&#x22;)) {
+      options.saveUnchanged = true;
+    } else {
+      options.saveUnchanged = !!options.saveUnchanged;
+    }
+
+    async.forEach(files, function(file, files_done) {
+      async.forEach(file.src, function(src, src_done) {
+        grunt.log.debug(&#x27;working on file&#x27;, src);
+
+        if (!grunt.file.exists(src)) {
+          grunt.log.debug(&#x27;file not fount&#x27;, src);
+          return src_done(src + &#x27; file not found&#x27;);
+        }
+
+        if (grunt.file.isDir(src)) {
+          grunt.log.debug(&#x27;source file is a directory&#x27;, src);
+          return src_done();
+        }
+
+        if (detectDestType(file.dest) === &#x27;directory&#x27;) {
+          grunt.log.debug(&#x27;destination is a directory&#x27;);
+
+          if (grunt.file.doesPathContain(file.dest, src)) {
+            dest = path.join(file.dest, src.replace(file.dest, &#x27;&#x27;));
+          } else {
+            dest = path.join(file.dest, src);
+          }
+        } else {
+          dest = file.dest;
+        }
+
+        dest = unixifyPath(dest);
+        grunt.log.debug(&#x27;unixified path is&#x27;, dest);
+        content = grunt.file.read(src);
+        newContent = exports.multi_str_replace(content, replacements, src, dest);
+
+        if (content !== newContent || options.saveUnchanged) {
+          grunt.file.write(dest, newContent);
+          counter+=1;
+          grunt.verbose.writeln(&#x27;File &#x27; + chalk.cyan(dest) + &#x27; created.&#x27;);
+        } else {
+          grunt.log.writeln(&#x27;File &#x27; + chalk.cyan(dest) + &#x27; &#x27; + chalk.red(&#x27;not&#x27;) + &#x27; created; No replacements found.&#x27;);
+        }
+
+        return src_done();
+
+      }, files_done);
+    }, function(err) {
+      if (err) {
+        grunt.log.error(err);
+        replace_done(false);
+      }
+        grunt.log.writeln(&#x27;\n&#x27;+ chalk.cyan(counter) + &#x27; files created&#x27;);
+      replace_done();
+    });
+  };
+
+  exports.normalize_replacements = function(replacements) {
+    return replacements.map(function(replacement) {
+      return [replacement.pattern, replacement.replacement];
+    });
+  };
+
+  var decorate_replace_function = function(replacement, src, dest) {
+    grunt.log.debug(&#x27;decorating replace function with extra arguments&#x27;);
+
+    return function () {
+      grunt.log.debug(&#x27;running decorated replace function with extra arguments&#x27;);
+      var args = Array.prototype.slice.apply(arguments);
+      args.push(src, dest);
+      return replacement.apply(null, args);
+    };
+  };
+
+  exports.multi_str_replace = function(string, replacements, src, dest) {
+    return replacements.reduce(function(content, replacements) {
+      var pattern = replacements[0];
+      var replacement = replacements[1];
+
+      if (typeof replacement === &#x27;function&#x27;) {
+        grunt.log.debug(&#x27;replacing function with augmented one&#x27;);
+        replacement = decorate_replace_function(replacement, src, dest);
+      }
+
+      return content.replace(pattern, replacement);
+    }, string);
+  };
+
+  return exports;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ */
+
+module.exports = function(grunt) {
+&#x27;use strict&#x27;;
+
+// if grunt is not provided, then expose internal API
+if (&#x27;object&#x27; !== typeof(grunt)) {
+  return require(&#x27;./lib/string-replace&#x27;).<span class="apidocCodeKeywordSpan">init</span>(require(&#x27;grunt&#x27;));
+}
+
+var string_replace = require(&#x27;./lib/string-replace&#x27;).init(grunt);
+
+grunt.registerMultiTask(&#x27;string-replace&#x27;, &#x27;String Replace Task.&#x27;, function() {
+  var done = this.async(),
+    options = this.options({
+...</pre></li>
     </ul>
 
 
