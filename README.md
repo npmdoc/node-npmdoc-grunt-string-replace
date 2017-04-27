@@ -1,6 +1,6 @@
 # npmdoc-grunt-string-replace
 
-#### api documentation for  [grunt-string-replace (v1.3.1)](https://github.com/eruizdechavez/grunt-string-replace)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-string-replace.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-string-replace) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace)
+#### basic api documentation for  [grunt-string-replace (v1.3.1)](https://github.com/eruizdechavez/grunt-string-replace)  [![npm package](https://img.shields.io/npm/v/npmdoc-grunt-string-replace.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-grunt-string-replace) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace.svg)](https://travis-ci.org/npmdoc/node-npmdoc-grunt-string-replace)
 
 #### Replaces strings on files by using string or regex patterns. Attempts to be a String.prototype.replace adapter task for your grunt project.
 
